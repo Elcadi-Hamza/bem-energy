@@ -61,6 +61,46 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## instructions for inisialization
+1- install composer [click ici](https://getcomposer.org/).
+
+2-clone the code : 
+
+
+```bash
+git clone https://github.com/Elcadi-Hamza/bem-energy.git
+
+composer install
+
+cp .env.example .env
+
+php artisan key:generate
+
+npm install
+
+```
+3-change the info on .env
+```php
+DB_DATABASE=bemEnergy // changer le nom de la base donne 
+DB_USERNAME=root  // changer le nem d'utilsateur
+DB_PASSWORD=0000 // changer le mot de pass
+```
+4-creer la base de donner:
+
+lancer xamp
+
+``` bash
+php artisan migrate
+php artisan serve
+```
+si tu vois des error contacter moi
+
+5-lancer server 
+``` bash
+npm install 
+npm run dev
+```
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
