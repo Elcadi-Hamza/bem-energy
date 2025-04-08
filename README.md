@@ -17,15 +17,18 @@
 
 ```bash
 git clone https://github.com/Elcadi-Hamza/bem-energy.git
-
+```
+```bash
 composer install
-
+```
+```bash
 cp .env.example .env
-
+```
+```bash
 php artisan key:generate
-
+```
+```bash
 npm install
-
 ```
 3-change the info on .env
 ```php
@@ -39,6 +42,8 @@ lancer xamp
 
 ``` bash
 php artisan migrate
+```
+```bash
 php artisan serve
 ```
 si tu vois des error contacter moi
@@ -46,6 +51,8 @@ si tu vois des error contacter moi
 5-lancer server 
 ``` bash
 npm install 
+```
+```bash
 npm run dev
 ```
 
