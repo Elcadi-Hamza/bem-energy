@@ -1,35 +1,41 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
-class Client extends Model
+class Client extends Authenticatable
 {
-    protected $primaryKey = 'id';
+    use HasFactory, Notifiable;
+
+    protected $guard = 'client';
+
     protected $fillable = [
-        'id',
-        'nom',
-        'prenom',
-        'email',
-        'telephone',
-        'pw',
-        'adresse'
+        'nom', 'prenom', 'email', 'password',
+        'adresse', 'telephone', 'image'
     ];
-    // public function projets(): HasMany
-    // {
-    //     return $this->hasMany(Projet::class, 'id_projet');
-    // }
 
-   
+    protected $hidden = ['password', 'remember_token'];
 
-    // // 3. Client has one Commentaire
-    // public function commetaires_temoignages(): HasMany
-    // {
-    //     return $this->HasMany(Commentaire::class, 'id_com_tem');
-    // }
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    public function projets()
+    {
+        return $this->hasMany(Projet::class, 'id_client');
+    }
+
+    public function commentaires()
+    {
+        return $this->hasMany(CommentaireTemoignage::class, 'id_client');
+    }
+    public function produits()
+    {
+        return $this->belongsToMany(Produit::class,'acheter','id_client','id_produit');
+    }
 
 }
