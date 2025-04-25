@@ -35,6 +35,6 @@ class ClientAuthController extends Controller
         Auth::guard('client')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('auth.client.login');
+        return redirect()->route('client.login');
     }
 }
