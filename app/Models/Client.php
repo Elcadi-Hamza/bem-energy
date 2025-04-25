@@ -16,7 +16,7 @@ class Client extends Authenticatable
      *
      * @var string
      */
-    protected $guard = 'client';
+    
     
     /**
      * The table associated with the model.
@@ -24,6 +24,10 @@ class Client extends Authenticatable
      * @var string
      */
     protected $table = 'clients'; // Explicitement définir la table
+    protected $guard = 'client';
+    protected $primaryKey = 'id_client';
+    public $incrementing = true;
+    protected $keyType = 'int';
     
     /**
      * The attributes that are mass assignable.
