@@ -39,7 +39,7 @@
                                 <button class="btn btn-danger rounded-pill py-3 px-5 w-100" type="submit">Se Connecter</button>
                             </div>
                             <div class="col-12 text-center">
-                                <p class="mb-0">Pas encore de compte ? <a href="sing" class="text-danger">Inscrivez-vous</a></p>
+                                <p class="mb-0">Pas encore de compte ? <a href="register" class="text-danger">Inscrivez-vous</a></p>
                             </div>
                         </div>
                     </form>
