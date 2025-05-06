@@ -17,9 +17,11 @@ return new class extends Migration
             $table->date('datePublication');
             $table->string('etat');
             $table->timestamps();
-            $table->unsignedBigInteger('id_employee'); 
-            $table->unsignedBigInteger('id_blog');    
+            $table->unsignedBigInteger('id_employee')->nullable(); 
+            $table->unsignedBigInteger('id_blog')->nullable();
             $table->unsignedBigInteger('id_client');  
+            $table->unsignedBigInteger('id_service')->nullable();
+            $table->unsignedBigInteger('id_produit')->nullable();
             
    
             $table->foreign('id_employee')
@@ -35,6 +37,16 @@ return new class extends Migration
             $table->foreign('id_client')
                   ->references('id_client')
                   ->on('clients')
+                  ->onDelete('cascade');
+
+            $table->foreign('id_service')
+                  ->references('id_service')
+                  ->on('services')
+                  ->onDelete('cascade');
+
+            $table->foreign('id_produit')
+                  ->references('id_produit')
+                  ->on('services')
                   ->onDelete('cascade');
         });
         

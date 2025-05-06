@@ -11,13 +11,26 @@ class EmployeeAuthController extends Controller
     {
         return view('auth.employee.login');
     }
-
     public function login(Request $request)
     {
+        // $credentials = $request->only('email', 'password');
+
+        // if (Auth::guard('employee')->attempt($credentials)) {
+        //     return redirect()->intended(route('auth.employee.dashboard'));
+        // }
+
+        // return back()->withErrors([
+        //     'email' => 'Invalid credentials.',
+        // ]);
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('employee')->attempt($credentials)) {
-            return redirect()->intended(route('employee.dashboard'));
+        // Get the user by email
+        $user = \App\Models\Employee::where('email', $credentials['email'])->first();
+        
+        // Direct password comparison (UNSAFE - for testing only!)
+        if ($user && $credentials['password'] === $user->password) {
+            Auth::guard('employee')->login($user);
+            return redirect()->intended(route('auth.employee.dashboard'));  // Make sure this matches your route name
         }
 
         return back()->withErrors([

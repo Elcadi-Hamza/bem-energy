@@ -43,4 +43,8 @@ class Produit extends Model
     {
         return $this->belongsToMany(Client::class,'acheter','id_client','id_produit');
     }
+    public function commentaires()
+    {
+        return $this->hasMany(CommentaireTemoignage::class, 'id_produit');
+    }
 }

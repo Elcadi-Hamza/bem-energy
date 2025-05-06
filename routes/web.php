@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\EmployeeAuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\clientController;
+// use App\Http\Controllers\clientController;
+
+
 
 
 
@@ -54,21 +57,37 @@ Route::get('/panier',function () {
     return view('frontEnd.cart');
 });
 
-Route::get('/login',function () {
-    return view('frontEnd.login');
-})->name('login');
-Route::get('/sing', function () {
-    $sing = true;
-    return view('frontEnd.login', compact('sing'));
+// Route::get('/login',function () {
+//     return view('frontEnd.login');
+// })->name('login');
+// Route::get('/sing', function () {
+//     $sing = true;
+//     return view('frontEnd.login', compact('sing'));
+// });
+
+
+// Route::post('/verification',[clientController::class, 'store'])->name('ajouterClient');
+// Route::get('/valid', function () {
+//     return view('frontEnd.validation');
+// });
+// Route::post('/verify-code', [clientController::class, 'verifyCode'])->name('verifyClient');
+
+// Route::get('/verify-email/{token}', function ($token) {
+//     return "Verification token: " . $token;
+// })->name('verify.email');
+
+
+// --------------------------------------------- hamza
+
+// Employee Auth Routes
+Route::get('/admin', function () {
+    return redirect()->route('employee.login');
 });
-
-
-Route::post('/verification',[clientController::class, 'store'])->name('ajouterClient');
-Route::get('/valid', function () {
-    return view('frontEnd.validation');
+Route::group(['prefix' => 'employee'], function () {
+    Route::get('/login', [EmployeeAuthController::class, 'showLoginForm'])->name('employee.login');
+    Route::post('/login', [EmployeeAuthController::class, 'login'])->name('auth.employee.login');
+    Route::get('/dashboard', [EmployeeAuthController::class, 'dashboard'])
+        ->name('auth.employee.dashboard')
+        ->middleware('auth:employee');
+    Route::post('/logout', [EmployeeAuthController::class, 'logout'])->name('employee.logout');
 });
-Route::post('/verify-code', [clientController::class, 'verifyCode'])->name('verifyClient');
-
-Route::get('/verify-email/{token}', function ($token) {
-    return "Verification token: " . $token;
-})->name('verify.email');

@@ -30,4 +30,8 @@ class Service extends Model
     {
         return $this->belongsTo(Employee::class, 'id_employee');
     }
+    public function commentaires()
+    {
+        return $this->hasMany(CommentaireTemoignage::class, 'id_blog');
+    }
 }

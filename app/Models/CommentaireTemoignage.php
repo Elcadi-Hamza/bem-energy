@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CommentaireTemoignage extends Model
 {
-    protected $primaryKey = 'id_com_tem';
+    protected $primaryKey = 'id_comtem';
     public $incrementing = true;
 
     protected $fillable = [
@@ -16,6 +16,8 @@ class CommentaireTemoignage extends Model
         'id_employee',
         'id_blog',
         'id_client',
+        'id_service',
+        'id_produit',
     ];
 
     public function employee()
@@ -31,5 +33,13 @@ class CommentaireTemoignage extends Model
     public function client()
     {
         return $this->belongsTo(Client::class, 'id_client');
+    }
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'id_service');
+    }
+    public function produit()
+    {
+        return $this->belongsTo(Produit::class, 'id_produit');
     }
 }
